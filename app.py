@@ -1,10 +1,8 @@
-from flask import Flask
+# app.py
 
-app = Flask(__name__)
+from app import create_app
 
-@app.route('/')
-def home():
-    return "Welcome to Nemras!"
+app = create_app()
 
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+    app.run(debug=True)  # Enable debug mode for development
