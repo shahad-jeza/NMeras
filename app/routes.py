@@ -1,9 +1,9 @@
-# routes.py
-
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, jsonify
 from app.pico_pubmed import parse_pico_with_cohere, search_pubmed, fetch_pubmed_details, extract_abstracts_from_xml, summarize_paper_with_cohere
+import cohere
 
 main = Blueprint('main', __name__)
+co = cohere.Client('your-api-key')  # Replace with your actual Cohere API key
 
 @main.route('/')
 def index():
@@ -31,6 +31,29 @@ def pico_question():
                             'summary': summary
                         })
         
-        return render_template('results.html', results=results, pico=parsed_pico)
+        return jsonify({
+            'pico': parsed_pico,
+            'results': results,
+            'pico_question': pico_question
+        })
     
     return render_template('pico_question.html')
+
+@main.route('/help-pico', methods=['POST'])
+def help_pico():
+    data = request.json
+    original_question = data['original_question']
+    
+    prompt = f"Rewrite the following question as a well-structured PICO question: '{original_question}'"
+    response = co.generate(
+        model='command',
+        prompt=prompt,
+        max_tokens=100,
+        temperature=0.7,
+        k=0,
+        stop_sequences=[],
+        return_likelihoods='NONE'
+    )
+    suggested_question = response.generations[0].text.strip()
+    
+    return jsonify({'suggested_question': suggested_question})

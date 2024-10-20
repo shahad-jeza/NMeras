@@ -32,7 +32,7 @@ def search_pubmed(pico_components):
     intervention = pico_components.get('Intervention', '')
     comparison = pico_components.get('Comparison', '')
     outcome = pico_components.get('Outcome', '')
-    term = f"{patient} AND {intervention} AND {comparison} AND {outcome}"
+    term = f"{patient} OR {intervention} OR {comparison} OR {outcome}"
     base_url = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi"
     params = {
         "db": "pubmed",

@@ -1,0 +1,276 @@
+/* Initial transparent navbar */
+.navbar {
+  background-color: rgba(255, 255, 255, 0); /* Fully transparent background */
+  transition: background-color 0.3s ease;
+  position: fixed; /* Position absolute to stay on top of the scene */
+  width: 100%; /* Full width */
+  z-index: 10; /* Ensure navbar is above the background */
+}
+
+/* Navbar links */
+.navbar a {
+  color: white; /* Make the text white initially */
+  transition: color 0.3s ease;
+}
+
+/* Solid navbar background when scrolled */
+.navbar.scrolled {
+  background-color: #9396b3; /* Your desired solid background color */
+}
+
+/* Navbar text color when scrolled */
+.navbar.scrolled a {
+  color: #394786; /* Change text color to black or desired color */
+}
+
+/* Style for the navbar links */
+.navbar-nav .nav-link {
+  color: white; /* Normal text color */
+  transition: color 0.3s ease; /* Smooth transition for hover */
+  font-size: 20px; /* Adjust font size if needed */
+  display: flex;
+  align-items: center; /* Vertically center the text */
+  height: 100%; /* Ensure it takes the full height of the navbar */
+  margin-right: 20px;
+}
+
+/* Change color on hover */
+.navbar-nav .nav-link:hover {
+  color: #6072b4; /* Hover color */
+}
+
+/* Optional: Make sure the brand text is aligned vertically */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  color: #394685; /* Color for brand text */
+  font-weight: bolder;
+  font-size: 24px;
+  margin-left: 10px;
+}
+
+
+
+
+/* Container styles */
+.container {
+  position: absolute;
+  top: 50px; /* Adjust this value to move it higher or lower */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10; /* Ensure the container is above the background */
+  text-align: center;
+  width: 100%;
+}
+
+/* Section styles */
+#sectionone {
+  position: relative;
+  height: 100vh; /* Full-screen height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Hide any overflow */
+}
+
+/* Scene styles */
+#scene {
+  position: relative; /* Ensures that child elements can be positioned relative to this */
+  width: 100%;
+  height: 100vh; /* Set to full viewport height */
+}
+
+/* Background image inside the scene */
+.bg img {
+  width: 100%;
+  height: 100vh; /* Ensures it fills the height of the viewport */
+  object-fit: cover; /* Ensures the image covers the area without distortion */
+  filter: brightness(0.5) hue-rotate(60deg); /* Adjusted to shift blue to purple */
+  opacity: 0.9; /* Use 0-1 scale for opacity */
+}
+
+/* Text inside the scene */
+.text {
+  position: absolute;
+  z-index: 5;
+}
+
+#title{
+  font-family: "Raleway", sans-serif;
+  font-weight: 300;
+  font-size: 40px;
+  color: white;
+  text-transform: capitalize;
+}
+
+
+section {
+  height: 100vh;
+  overflow: hidden;
+}
+
+
+/*----------*/
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600');
+
+
+
+.miheal{
+    font-size:40px;
+    text-align:center;
+  }
+  .timeline{
+    position:relative;
+    margin:50px auto;
+    padding:40px 0;
+    width:1000px;
+    box-sizing:border-box;
+  }
+  .timeline:before{
+    content:'';
+    position:absolute;
+    left:50%;
+    width:2px;
+    height:100%;
+    background:#b1b9e0;
+  }
+  .timeline ul{
+    padding:0;
+    margin:0;
+  }
+  .timeline ul li{
+    list-style:none;
+    position:relative;
+    width:50%;
+    padding:20px 40px;
+    box-sizing:border-box;
+  }
+  .timeline ul li:nth-child(odd){
+    float:left;
+    text-align:left;
+    clear:both;
+  }
+  .timeline ul li:nth-child(even){
+    float:right;
+    text-align:left;
+    clear:both;
+  }
+  .content{
+    padding-bottom:20px;
+  }
+   h3{
+    margin:10px;
+  }
+  .timeline ul li:nth-child(odd):before
+  {
+    content:'';
+    position:absolute;
+    width:10px;
+    height:10px;
+    top:24px;
+    right:-6px;
+    background:#384584;
+    border-radius:50%;
+    box-shadow:0 0 0 3px #646d98;
+  }
+  .timeline ul li:nth-child(even):before
+  {
+    content:'';
+    position:absolute;
+    width:10px;
+    height:10px;
+    top:24px;
+    left:-4px;
+    background:#646d98;
+    border-radius:50%;
+    box-shadow:0 0 0 3px #384584;
+  }
+  .timeline ul li h3{
+    padding:0;
+    margin:0;
+    color:#384584;
+    font-weight:600;
+    padding-top:10px;
+  }
+  .timeline ul li p{
+    margin:10px 0 0;
+    padding:0;
+  }
+  .timeline ul li .time h4{
+    margin:0;
+    padding:0;
+    font-size:14px;
+  }
+  .timeline ul li:nth-child(odd) .time
+  {
+    position:absolute;
+    top:12px;
+    right:-165px;
+    margin:0;
+    padding:8px 16px;
+    background:#646d98;
+    color:#fff;
+    border-radius:18px;
+    box-shadow:0 0 0 3px #b1b9e0;
+  }
+  .timeline ul li:nth-child(even) .time
+  {
+    position:absolute;
+    top:12px;
+    left:-165px;
+    margin:0;
+    padding:8px 16px;
+    background:#646d98;
+    color:#fff;
+    border-radius:18px;
+    box-shadow:0 0 0 3px #b1b9e0;
+  }
+  @media(max-width:1000px)
+  {
+    .timeline{
+      width:100%;
+    }
+  }
+  @media(max-width:767px){
+    .timeline{
+      width:100%;
+      padding-bottom:0;
+    }
+    h1{
+      font-size:40px;
+      text-align:center;
+    }
+    .timeline:before{
+      left:20px;
+      height:100%;
+    }
+    .timeline ul li:nth-child(odd),
+    .timeline ul li:nth-child(even)
+    {
+      width:100%;
+      text-align:left;
+      padding-left:50px;
+      padding-bottom:50px;
+    }
+    .timeline ul li:nth-child(odd):before,
+    .timeline ul li:nth-child(even):before
+    {
+      top:-18px;
+      left:16px;
+    }
+    .timeline ul li:nth-child(odd) .time,
+    .timeline ul li:nth-child(even) .time{
+      top:-30px;
+      left:50px;
+      right:inherit;
+    }
+  }
+;
+
+
+
+
+/* Pico page */
+.pico-search {
+  background-color: red; /* Change this to your desired color */
+}

@@ -1,43 +1,88 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEMRAS - Home</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">NEMRAS</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
-                    </li>
-                </ul>
+{% extends "base.html" %}
+
+{% block title %}NEMRAS - Home{% endblock %}
+
+{% block content %}
+    <!-----------------------page start "welcome"-->
+    <section id="sectionone" class="screen">
+        <div id="scene">
+            <div data-depth="0.1" class="bg">
+                <img src="{{ url_for('static', filename='images/background.png') }}" alt="" />
+            </div>
+            <div data-depth="0.1" class="text">
+                <h1>NMeras</h1>
             </div>
         </div>
-    </nav>
+    </section>
 
     <div class="container mt-5">
-        <h1 class="text-center mb-4">Welcome to NEMRAS</h1>
+        <h1 id="title" class="text-center mb-4">Welcome to NMeras</h1>
         <p class="text-center">NEMRAS helps you find relevant medical research based on PICO questions.</p>
         <div class="text-center mt-4">
             <a href="{{ url_for('main.pico_question') }}" class="btn btn-primary btn-lg">Start PICO Search</a>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+    <!-------------------- Items "goals and mission" ----------------------->
+    <div class="containerr">
+        <div id="KnowMore" class="timeline">
+            <ul>
+                <li>
+                    <div class="time">
+                        <h4>NMeras</h4>
+                    </div>
+                    <div class="content">
+                        <h3>What is NMeras</h3>
+                        <p>NMeras is an AI-powered platform that assists nurses in formulating PICO (Population, Intervention, Comparison, Outcome) questions, searching for relevant evidence, and conducting critical appraisal of research studies, thereby streamlining the evidence based practice (EBP) process.</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="content">
+                        <h3>Mission</h3>
+                        <p>To empower nurses with AI-driven tools and resources to enhance evidence-based practice (EBP), therefore improving patient outcomes and advancing healthcare practices.</p>
+                    </div>
+                    <div class="time">
+                        <h4>Mission</h4>
+                    </div>
+                </li>
+                <li>
+                    <div class="content">
+                        <h3>Vision</h3>
+                        <p>To revolutionize nursing practice by providing accessible, intuitive, and AI-powered support for evidence-based decision-making, fostering a culture of continuous learning and innovation within healthcare.</p>
+                    </div>
+                    <div class="time">
+                        <h4>Vision</h4>
+                    </div>
+                </li>
+                <li>
+                    <div class="content">
+                        <h3>Ensure patient safety & quality care</h3>
+                        <p>Base clinical decisions on current, relevant evidence for effective interventions.</p>
+                    </div>
+                    <div class="time">
+                        <h4>Goals</h4>
+                    </div>
+                </li>
+                <li>
+                    <div class="content">
+                        <h3>Boost nursing practices & lessen workload</h3>
+                        <p>Enhance advanced nursing practices, reducing burdens and enhancing engagement.</p>
+                    </div>
+                    <div class="time">
+                        <h4>BNP & LW</h4>
+                    </div>
+                </li>
+                <li>
+                    <div class="content">
+                        <h3>Improve decision-making efficiency</h3>
+                        <p>Streamline evidence retrieval and synthesis for timely, informed clinical decisions.</p>
+                    </div>
+                    <div class="time">
+                        <h4>IDME</h4>
+                    </div>
+                </li>
+                <div style="clear:both;"></div>
+            </ul>
+        </div>
+    </div>
+{% endblock %}
