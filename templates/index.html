@@ -4,24 +4,27 @@
 
 {% block content %}
     <!-----------------------page start "welcome"-->
-    <section id="sectionone" class="screen">
-        <div id="scene">
-            <div data-depth="0.1" class="bg">
-                <img src="{{ url_for('static', filename='images/background.png') }}" alt="" />
+    <div class="intro-container">
+        <section id="sectionone">
+          <div id="scene">
+            <div class="bg">
+              <img src="{{ url_for('static', filename='images/background.png') }}" alt="" />
             </div>
-            <div data-depth="0.1" class="text">
-                <h1>NMeras</h1>
+            <div class="content-overlay">
+              <h1 id="title">WELCOME TO <span id="brand">NMeras</span></h1>
+              <p id="descrption">NMeras helps you find relevant medical research based on PICO questions.</p>
+              <div id="get_started_container">
+                <a href="{{ url_for('main.pico_question') }}" id="get_started" class="btn btn-primary">
+                    Get Started 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" stroke="currentColor" stroke-width="1" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8"/>
+                    </svg>
+                  </a>
+              </div>
             </div>
-        </div>
-    </section>
-
-    <div class="container mt-5">
-        <h1 id="title" class="text-center mb-4">Welcome to NMeras</h1>
-        <p class="text-center">NEMRAS helps you find relevant medical research based on PICO questions.</p>
-        <div class="text-center mt-4">
-            <a href="{{ url_for('main.pico_question') }}" class="btn btn-primary btn-lg">Start PICO Search</a>
-        </div>
-    </div>
+          </div>
+        </section>
+      </div>
 
     <!-------------------- Items "goals and mission" ----------------------->
     <div class="containerr">
@@ -85,4 +88,122 @@
             </ul>
         </div>
     </div>
+
+
+    
+    <!---------------------services-section--------------------------->
+
+
+    <section id="services-section" class="bg-light py-5 py-xl-8">
+
+              <h3 class="fs-6 mb-2 text-secondary text-center text-uppercase">WHY NMeras?</h3>
+              <h2 style=" width: 1500px;" class="display-7 mb-4 text-center">Your ultimate tool for evidence-based research and appraisal.</h2>
+              <hr class="w-50 mx-auto mb-0 border-dark-subtle">
+
+
+        <div class="container">
+
+          
+          <div class="row">
+            <!-- Card 1: Enter PICO Question -->
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="card">
+                <div style="text-align: center;" class="card-body">
+                    <svg  xmlns="http://www.w3.org/2000/svg" width="56" height="56" fill="#87986E" class="bi bi-clipboard-pulse" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M10 1.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5zm-5 0A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5v1A1.5 1.5 0 0 1 9.5 4h-3A1.5 1.5 0 0 1 5 2.5zm-2 0h1v1H3a1 1 0 0 0-1 1V14a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V3.5a1 1 0 0 0-1-1h-1v-1h1a2 2 0 0 1 2 2V14a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V3.5a2 2 0 0 1 2-2m6.979 3.856a.5.5 0 0 0-.968.04L7.92 10.49l-.94-3.135a.5.5 0 0 0-.895-.133L4.232 10H3.5a.5.5 0 0 0 0 1h1a.5.5 0 0 0 .416-.223l1.41-2.115 1.195 3.982a.5.5 0 0 0 .968-.04L9.58 7.51l.94 3.135A.5.5 0 0 0 11 11h1.5a.5.5 0 0 0 0-1h-1.128z"/>
+                      </svg>
+                  <h4>Enter Your PICO Question</h4>
+                  <p>Simply input your clinical or research question following the PICO format (Population, Intervention, Comparison, Outcome), and we'll retrieve the most relevant studies for you.</p>
+                </div>
+              </div>
+            </div>
+      
+            <!-- Card 2: Retrieve and Rank Studies -->
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="card">
+                <div class="card-body">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                      </svg>
+                  <h4>Retrieve and Rank Studies</h4>
+                  <p>We use the Oxford appraisal tool to rank studies by relevance and quality, ensuring you access the best evidence for your clinical decisions.</p>
+                </div>
+              </div>
+            </div>
+      
+            <!-- Card 3: Summarize and Provide Results -->
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="card">
+                <div class="card-body">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" fill="currentColor" class="bi bi-file-earmark-medical" viewBox="0 0 16 16">
+                        <path d="M7.5 5.5a.5.5 0 0 0-1 0v.634l-.549-.317a.5.5 0 1 0-.5.866L6 7l-.549.317a.5.5 0 1 0 .5.866l.549-.317V8.5a.5.5 0 1 0 1 0v-.634l.549.317a.5.5 0 1 0 .5-.866L8 7l.549-.317a.5.5 0 1 0-.5-.866l-.549.317zm-2 4.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zm0 2a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1z"/>
+                        <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/>
+                      </svg>
+                  <h4>Summarize and Present Results</h4>
+                  <p>Get summarized insights from the research, helping you make data-driven decisions quickly and efficiently for your clinical practice or research.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+
+
+
+
+
+      <!------------------------contact us ----------------------------------->
+      <section id="contact-section" class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="card">
+              <div class="card-body">
+                <h2>Get In Touch</h2>
+                <p>If you have any questions or thoughts, don't hesitate to get in touch.</p>
+                <form>
+                  <div class="form-group">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                  </div>
+                  <div class="form-group">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                  </div>
+                  <div class="form-group">
+                    <label for="message" class="form-label">Message</label>
+                    <textarea class="form-control" id="message" rows="5" placeholder="Enter your message"></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-custom">Submit</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+  
+{% endblock %}
+
+
+
+
+
+
+
+
+{% block extra_js %}
+
+<script>
+    // Add the animation class to the brand word when the page loads
+    window.addEventListener('load', function() {
+      document.getElementById('brand').classList.add('animated');
+    });
+
+
+
+  </script>
 {% endblock %}
