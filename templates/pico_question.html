@@ -4,117 +4,149 @@
 
 {% block body_class %}pico-search{% endblock %}
 
-
 {% block content %}
-<div style="background: rgb(91,98,130);
-background: linear-gradient(27deg, rgba(91,98,130,1) 24%, rgba(170,174,208,1) 64%); padding: 20px; min-height: 100vh;">
-    <div class="container mt-5">
-        <h1 class="text-center mb-4">PICO Search</h1>
-        <form id="picoForm">
-            <div class="mb-3">
-                <label for="pico_question" class="form-label">Enter Your PICO Question:</label>
-                <textarea class="form-control" id="pico_question" name="pico_question" rows="3" required></textarea>
-            </div>
-            <div class="text-center">
-                <button type="submit" id="submitButton" class="btn btn-primary">
-                    <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
-                    <span class="button-text">Submit</span>
-                </button>
-            </div>
-        </form>
-
-        <div id="resultsSection" class="mt-5 d-none">
-            <h2>Parsed PICO Components:</h2>
-            <ul id="picoComponents" class="list-group mb-4">
+<!------------Navbar------------------->
+<nav class="navbar sticky-top navbar-expand-lg custom-navbar">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{{ url_for('main.index') }}">
+            <img src="{{ url_for('static', filename='images/NMERASs.png') }}" width="73" height="54" class="d-inline-block align-top" alt="">
+            NMeras
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ url_for('main.index') }}#home-section">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('main.index') }}#KnowMore">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('main.index') }}#services-section">Services</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('main.index') }}#contact-section">Contact Us</a></li>
             </ul>
+        </div>
+    </div>
+</nav>
 
-            <h2>Search Results:</h2>
-            <div id="searchResults" class="row row-cols-1 row-cols-md-2 g-4">
-            </div>
+<div style="padding: 50px; min-height: 100vh;">
+    <h1 id="main-header">Towards Evidence-Based Practices</h1>
+    <h4 id="sub-header">Empowering Nurses for Better Healthcare!</h4>
 
-            <div class="mt-4">
-                <button id="newSearchButton" class="btn btn-primary">New Search</button>
-                <button id="helpButton" class="btn btn-secondary">Help with PICO Question</button>
+    <div class="container mt-5 h-100">
+        <div class="row h-100">
+            <div class="col-md-6 d-flex align-items-center">
+                <div class="w-100">
+                    <form id="picoForm">
+                        <div class="mb-3">
+                            <textarea class="form-control custom-input" id="pico_question" name="pico_question" rows="3" placeholder="Enter Your PICO Question" required></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" id="submitButton" class="btn btn-primary custom-btn">
+                                <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                                <span class="button-text">Submit</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
+            <div class="col-md-6 d-flex justify-content-center align-items-center">
+                <lottie-player src="https://lottie.host/262ab9f4-07d0-4cee-ab84-77a3d05da433/l72d6k5Qjh.json" background="#FFFFFF" speed="1" style="width: 300px; height: 300px" loop autoplay></lottie-player>
+            </div>
+        </div>
+    </div>
+
+    <div id="resultsSection" class="mt-5 d-none">
+        <h2 class="text-center mb-4">Parsed PICO Components:</h2>
+        <ul id="picoComponents" class="list-group mb-4"></ul>
+
+        <div id="searchResults" class="row row-cols-1 row-cols-md-2 g-4 mb-4"></div>
+
+        <div class="mt-4 text-center">
+            <button id="newSearchButton" class="btn btn-primary btn-lg">New Search</button>
         </div>
     </div>
 </div>
 {% endblock %}
 
-
-
-
-
-
 {% block extra_js %}
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 <script>
 document.getElementById('picoForm').addEventListener('submit', function(e) {
     e.preventDefault();
-    
     const button = document.getElementById('submitButton');
     const spinner = button.querySelector('.spinner-border');
     const buttonText = button.querySelector('.button-text');
-
-    // Disable the button and show spinner
     button.disabled = true;
     spinner.classList.remove('d-none');
     buttonText.textContent = 'Processing...';
 
-    // Get form data
     const formData = new FormData(this);
-
-    // Submit the form via AJAX
     fetch("{{ url_for('main.pico_question') }}", {
         method: 'POST',
         body: formData
     })
     .then(response => response.json())
-    .then(data => {
-        // Handle the response
-        displayResults(data);
-    })
+    .then(data => displayResults(data))
     .catch(error => {
         console.error('Error:', error);
         alert('An error occurred while processing your request. Please try again.');
     })
     .finally(() => {
-        // Re-enable the button and hide spinner
         button.disabled = false;
         spinner.classList.add('d-none');
         buttonText.textContent = 'Submit';
     });
 });
 
+
+
+
+function getBadgeColor(score) {
+    if (score > 40) return 'bg-success';
+    else if (score > 30) return 'bg-lime';
+    else if (score >= 20) return 'bg-warning';
+    else return 'bg-warning';
+}
+
 function displayResults(data) {
     const resultsSection = document.getElementById('resultsSection');
     const picoComponents = document.getElementById('picoComponents');
     const searchResults = document.getElementById('searchResults');
 
-    // Display PICO components
     picoComponents.innerHTML = '';
-    for (const [component, value] of Object.entries(data.pico)) {
-        picoComponents.innerHTML += `<li class="list-group-item"><strong>${component}:</strong> ${value}</li>`;
-    }
 
-    // Display search results
+    // Define the correct order for PICO components
+    const picoOrder = ['Patient', 'Intervention', 'Comparison', 'Outcome'];
+
+    picoOrder.forEach(component => {
+        if (data.pico[component]) {
+            picoComponents.innerHTML += `<li class="list-group-item"><strong>${component}:</strong> ${data.pico[component]}</li>`;
+        }
+    });
+
     searchResults.innerHTML = '';
     data.results.forEach((result, index) => {
+        const badgeColor = getBadgeColor(result.score);
         searchResults.innerHTML += `
             <div class="col">
                 <div class="card h-100">
                     <div class="card-body">
-                        <h5 class="card-title">Paper ${index + 1}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Abstract</h6>
-                        <p class="card-text">${result.abstract.substring(0, 200)}...</p>
+                        <p class="text-muted mb-1">Paper ${index + 1}</p>
+                        <h5 class="card-title d-flex align-items-center">
+                            ${result.title}
+                            <span class="badge ${badgeColor} ms-2">${result.score}</span>
+                        </h5>
                         <h6 class="card-subtitle mb-2 text-muted">Summary</h6>
                         <p class="card-text">${result.summary}</p>
+                        <h6 class="card-subtitle mb-2 text-muted">Abstract</h6>
+                        <p class="card-text abstract-text" data-full-text="${result.abstract}">
+                ${result.abstract.substring(0, 300)}... <a href="#" class="read-more">Read more</a>
+            </p>
+                        <a href="${result.url}" target="_blank" class="card-link mt-2">Read Full Article</a>
                     </div>
                 </div>
             </div>
         `;
     });
 
-    // Show results section
     resultsSection.classList.remove('d-none');
 }
 
@@ -123,6 +155,46 @@ document.getElementById('newSearchButton').addEventListener('click', function() 
     document.getElementById('resultsSection').classList.add('d-none');
 });
 
+document.addEventListener('click', function(event) {
+    if (event.target.classList.contains('read-more')) {
+        event.preventDefault();
+        const abstractText = event.target.closest('.abstract-text');
+        abstractText.textContent = abstractText.dataset.fullText; // Retrieve full text from data attribute
+    }
+});
 
+
+document.addEventListener('click', function(event) {
+    if (event.target.classList.contains('read-more')) {
+        event.preventDefault(); // Prevent default anchor behavior
+        
+        const abstractText = event.target.closest('.abstract-text');
+        const fullText = abstractText.getAttribute('data-full-text');
+        
+        // Show the full text and replace "Read more" with "Read less"
+        abstractText.innerHTML = fullText + ' <a href="#" class="read-less">Read less</a>';
+    } else if (event.target.classList.contains('read-less')) {
+        event.preventDefault(); // Prevent default anchor behavior
+        
+        const abstractText = event.target.closest('.abstract-text');
+        const fullText = abstractText.getAttribute('data-full-text');
+        
+        // Show the truncated text with "Read more" link again
+        abstractText.innerHTML = fullText.substring(0, 300) + '... <a href="#" class="read-more">Read more</a>';
+    }
+});
 </script>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.custom-navbar { background-color: #7d83b4; }
+.custom-navbar .nav-link { color: white; }
+.custom-navbar .nav-link:hover { color: #e1bee7; }
+.custom-navbar .navbar-brand { color: white; }
+.custom-navbar .navbar-toggler-icon { background-color: white; }
+.bg-success { background-color: #28a745 !important; } /* Bright green */
+.bg-lime { background-color: #95cb6b !important; } /* Light green */
+.bg-warning { background-color: #c4dc4c !important; } /* Yellow */
+</style>
 {% endblock %}

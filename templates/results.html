@@ -16,15 +16,18 @@
 
         <h2>Search Results:</h2>
         <div class="row row-cols-1 row-cols-md-2 g-4">
-            {% for result in results[:5] %}
+            {% for result in results[:8] %}
                 <div class="col">
                     <div class="card h-100">
                         <div class="card-body">
-                            <h5 class="card-title">Paper {{ loop.index }}</h5>
+                            <h5 class="card-title">
+                                <a href="{{ result.url }}" target="_blank" class="text-decoration-none">{{ result.title }}</a>
+                            </h5>
                             <h6 class="card-subtitle mb-2 text-muted">Abstract</h6>
                             <p class="card-text">{{ result.abstract[:200] }}...</p>
                             <h6 class="card-subtitle mb-2 text-muted">Summary</h6>
                             <p class="card-text">{{ result.summary }}</p>
+                            <a href="{{ result.url }}" target="_blank" class="card-link mt-2">Read Full Article</a>
                         </div>
                     </div>
                 </div>

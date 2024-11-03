@@ -479,14 +479,179 @@
 }
 
 /* PICO page */
-.pico-search {
-  background-color: red;
+    /* Align text to the left */
+    .text-start {
+      text-align: left;
+  }
+
+  /* Custom Input Field Styling */
+  .custom-input {
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.3s ease, border-color 0.3s ease;
+      resize: none; /* Disable resizing */
+      margin-bottom: 20px;
+  }
+
+  .custom-input::placeholder {
+      color: #999; /* Light gray placeholder text */
+      font-style: italic;
+  }
+
+  .custom-input:focus {
+      box-shadow: 0 4px 12px rgba(102, 51, 153, 0.3); /* Light purple shadow */
+      border-color: #9396b3; /* Purple border */
+      outline: none;
+  }
+
+/* Custom Button Styling */
+.custom-btn {
+  background-color: #9396b3; /* Purple color */
+  color: white;
+  border: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  padding: 12px 30px;
+  border-radius: 5px;
+  font-size: 18px;
+  width: 100%; /* Full-width button */
+  max-width: 200px; /* Restrict maximum width */
+}
+
+.custom-btn:hover {
+  background-color: #9085b6; /* Darker purple on hover */
+  transform: translateY(-3px);
+}
+
+/* Ensure focus state does not change background color */
+.custom-btn:focus {
+  background-color: #7f70b3; /* Keep the same purple color */
+  color: white;
+  border: none;
+  outline: none;
+  box-shadow: 0 0 5px rgba(112, 42, 183, 0.5); /* Optional shadow effect */
+}
+
+/* Keep the same background color on active state */
+.custom-btn:active {
+  transform: translateY(1px);
+  background-color: #7f70b3; /* Keep the same purple color */
+  color: white;
+  border: none;
+  /* You can add box-shadow or any other effects here if desired */
+}
+
+/* Prevent color change on focus and active */
+.custom-btn:focus-visible, .custom-btn:active {
+  background-color: #9396b3; /* Keep the same color */
+}
+
+  /* Hide the Lottie Player Controls */
+  lottie-player {
+      pointer-events: none;
+  }
+
+
+
+  #main-header {
+    margin-top: 150px;
+    color: #7d83b4; /* Dark gray color */
+
+    animation: slideIn 2s forwards;
+    margin-bottom: 10px;
+    font-family: "Raleway", sans-serif;
+    text-align: left;
+}
+
+#sub-header {
+  font-size: 22px;
+  margin-left: 10px;
+
+  font-family: "Raleway", sans-serif;
+    color: #999; /* Purple color */
+    text-align: left;
+    animation: slideIn 2s forwards;
+}
+
+
+@keyframes slideIn {
+  from {
+      transform: translateY(-50px);
+      opacity: 0;
+  }
+  to {
+      transform: translateY(0);
+      opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
 }
 
 
 
 
 
+#resultsSection {
+  background-color: #ffffff; /* White background for contrast */
+  padding: 20px; /* Padding for spacing */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+h2 {
+  color: #4a4a4a; /* Dark gray for header */
+}
+
+.list-group-item {
+  text-align: center;
+  background-color: #f8f9fa; /* Light gray background for list items */
+  border: 1px solid #dee2e6; /* Border for list items */
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s; /* Smooth transition */
+}
+
+#picoComponents {
+  display: flex;
+  flex-direction: column; /* Align items vertically */
+  align-items: center; /* Center items horizontally */
+  padding: 0; /* Remove default padding */
+}
+
+#picoComponents li {
+  text-align: center; /* Center text within each list item */
+  width: 100%; /* Optional: Adjust width as needed */
+}
+
+.list-group-item:hover {
+  background-color: #e2e6ea; /* Darker gray on hover */
+}
+
+.card {
+  border-radius: 10px; /* Rounded corners for cards */
+  transition: transform 0.2s; /* Smooth scaling */
+}
+
+.card:hover {
+  transform: scale(1.02); /* Slight zoom on hover */
+}
+
+.btn {
+  background-color: #7d83b4; /* Custom purple button color */
+  border: none; /* Remove default border */
+  transition: background-color 0.3s; /* Smooth transition */
+}
+
+.btn:hover {
+  background-color: #6c6192; /* Darker purple on hover */
+}
 
 
 footer {
@@ -494,5 +659,6 @@ footer {
   color: 4a4a4a;
   padding: 10px;
   text-align: center;
+  position: sticky;
 
 }

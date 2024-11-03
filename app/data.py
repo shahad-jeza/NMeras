@@ -1,16 +1,10 @@
-# pico_search.py
-import cohere
-import requests
-import json
-import xml.etree.ElementTree as ET
+# data.py
 
-# Initialize Cohere client
-co = cohere.Client('IguNqlbuOavI0k4CWMEumaQXUm3OQjDMmLa2P4ju')
-
-abstracts_and_scores = [
+articles = [
     {
-        "title": "Efficacy of Continuous Glucose Monitoring in Improving Glycemic Control and Reducing Hypoglycemia: A Systematic Review and Meta-Analysis of Randomized Trials",
-        "abstract": """
+        'title': 'Efficacy of Continuous Glucose Monitoring in Improving Glycemic Control and Reducing Hypoglycemia: A Systematic Review and Meta-Analysis of Randomized Trials',
+        'url': 'https://pmc.ncbi.nlm.nih.gov/articles/PMC3192603/',
+        'abstract': """
         Objective:
         We conducted a systematic review and meta-analysis to assess the efficacy of continuous glucose monitoring (CGM)
         in improving glycemic control and reducing hypoglycemia compared to self-monitored blood glucose (SMBG).
@@ -34,37 +28,33 @@ abstracts_and_scores = [
         to assess the efficacy of CGM in reducing patient-important complications without significantly increasing
         the burden of care for patients with diabetes.
         """,
-        "score": 45
+        'score': 45
     },
-
-
-
-        {
-        "title": "Effectiveness of continuous glucose monitoring in maintaining glycaemic control among people with type 1 diabetes mellitus: a systematic review of randomised controlled trials and meta-analysis",
-        "abstract": """
+    {
+        'title': 'Effectiveness of continuous glucose monitoring in maintaining glycaemic control among people with type 1 diabetes mellitus: a systematic review of randomised controlled trials and meta-analysis',
+        'url': 'https://pubmed.ncbi.nlm.nih.gov/35141761/',
+        'abstract': """
 Aims/hypothesis The aim of this work was to assess the effectiveness of continuous glucose monitoring (CGM) vs self- monitoring of blood glucose (SMBG) in maintaining glycaemic control among people with type 1 diabetes mellitus.
 Methods Cochrane Library, PubMed, Embase, CINAHL, Scopus, trial registries and grey literature were searched from 9 June 2011 until 22 December 2020 for RCTs comparing CGM intervention against SMBG control among the non-pregnant individuals with type 1 diabetes mellitus of all ages and both sexes on multiple daily injections or continuous subcutaneous insulin infusion with HbA1c levels, severe hypoglycaemia and diabetic ketoacidosis (DKA) as outcomes. Studies also included any individual or caregiver-led CGM systems. Studies involving GlucoWatch were excluded. Risk of bias was appraised with Cochrane risk of bias tool. Meta- analysis and meta-regression were performed using Review Manager software and R software, respectively. Heterogeneity was evaluated using χ2 and I2 statistics. Overall effects and certainty of evidence were evaluated using Z statistic and GRADE (Grading of Recommendations, Assessment, Development and Evaluation) software.
 Results Twenty-two studies, involving 2188 individuals with type 1 diabetes, were identified. Most studies had low risk of bias. Meta-analysis of 21 studies involving 2149 individuals revealed that CGM significantly decreased HbA1c levels compared with SMBG (mean difference −2.46 mmol/mol [−0.23%] [95% CI −3.83, −1.08], Z = 3.50, p=0.0005), with larger effects experi- enced among higher baseline HbA1c >64 mmol/mol (>8%) individuals (mean difference −4.67 mmol/mol [−0.43%] [95% CI −6.04, −3.30], Z = 6.69, p<0.00001). However, CGM had no influence on the number of severe hypoglycaemia (p=0.13) and DKA events (p=0.88). Certainty of evidence was moderate.
 Conclusions/interpretation CGM is superior to SMBG in improving glycaemic control among individuals with type 1 diabetes in the community, especially in those with uncontrolled glycaemia. Individuals with type 1 diabetes with HbA1c >64 mmol/mol (>8%) are most likely to benefit from CGM. Current findings could not confer a concrete conclusion on the effectiveness of CGM on DKA outcome as DKA incidences were rare. Current evidence is also limited to outpatient settings. Future research should evaluate the accuracy of CGM and the effectiveness of CGM across different age groups and insulin regimens as these remain unclear in this paper.
         """,
-        "score": 40
+        'score': 40
     },
-
-
-        {
-        "title": " The Efficacy of Technology in Type 1 Diabetes: A Systematic Review, Network Meta-analysis, and Narrative Synthesis",
-        "abstract": """
+    {
+        'title': 'The Efficacy of Technology in Type 1 Diabetes: A Systematic Review, Network Meta-analysis, and Narrative Synthesis',
+        'url': 'https://pubmed.ncbi.nlm.nih.gov/31904262/',
+        'abstract': """
 Background: Existing technologies for type 1 diabetes have not been compared against the full range of alternative devices. Multiple metrics of glycemia and patient-reported outcomes for evaluating technologies also require consideration. We thus conducted a systematic review, network meta-analysis, and narrative synthesis to compare the relative efficacy of available technologies for the management of type 1 diabetes. Methods: We searched MEDLINE, MEDLINE In-Process and other nonindexed citations, EMBASE, PubMed, All Evidence-Based Medicine Reviews, Web of Science, PsycINFO, CINAHL, and PROSPERO (inception— April 24, 2019). We included RCT ‡6 weeks duration comparing technologies for type 1 diabetes management among nonpregnant adults (>18 years of age). Data were extracted using a predefined tool. Primary outcomes were A1c (%), hypoglycemia rates, and quality of life (QoL). We estimated mean difference for A1c and nonsevere hypoglycemia, rate ratio for severe hypoglycemia, and standardized mean difference for QoL in network meta-analysis with random effects.
 Results: We identified 16,772 publications, of which 52 eligible studies compared 12 diabetes management technologies comprising 3,975 participants in network meta-analysis. Integrated insulin pump and continuous glucose monitoring (CGM) systems with low-glucose suspend or hybrid closed-loop algorithms resulted in A1c levels 0.96% (predictive interval [95% PrI] 0.04–1.89) and 0.87% (95% PrI 0.12–1.63) lower than multiple daily injections with either flash glucose monitoring or capillary glucose testing, respectively. In addition, integrated systems had the best ranking for A1c reduction utilizing the surface under the cumulative ranking curve (SUCRA–96.4). While treatment effects were nonsignificant for many technology comparisons regarding severe hypoglycemia and QoL, simultaneous evaluation of outcomes in cluster analyses as well as narrative synthesis appeared to favor integrated insulin pump and continuous glucose monitors. Overall risk of bias was moderate–high. Certainty of evidence was very low.
 Conclusions: Integrated insulin pump and CGM systems with low-glucose suspend or hybrid closed-loop capability appeared best for A1c reduction, composite ranking for A1c and severe hypoglycemia, and possibly QoL.
         """,
-        "score": 35
+        'score': 35
     },
-
-
-        {
-        "title": "Continuous glucose monitoring systems for type 1 diabetes mellitus",
-        "abstract": """
+    {
+        'title': 'Continuous glucose monitoring systems for type 1 diabetes mellitus',
+        'url': 'https://pubmed.ncbi.nlm.nih.gov/22258980/',
+        'abstract': """
         Background
 Self-monitoring of blood glucose is essential to optimise glycaemic control in type 1 diabetes mellitus. Continuous glucose monitoring (CGM) systems measure interstitial fluid glucose levels to provide semi-continuous information about glucose levels, which identifies fluctuations that would not have been identified with conventional self-monitoring. Two types of CGM systems can be defined: retrospective systems and real-time systems. Real-time systems continuously provide the actual glucose concentration on a display. Currently, the use of CGM is not common practice and its reimbursement status is a point of debate in many countries.
 Objectives
@@ -83,137 +73,18 @@ There were no studies in pregnant women with diabetes type 1 and in patients wit
 Authors' conclusions
 There is limited evidence for the effectiveness of real-time continuous glucose monitoring (CGM) use in children, adults and patients with poorly controlled diabetes. The largest improvements in glycaemic control were seen for sensor-augmented insulin pump therapy in patients with poorly controlled diabetes who had not used an insulin pump before. The risk of severe hypoglycaemia or ketoacidosis was not significantly increased for CGM users, but as these events occurred infrequent these results have to be interpreted cautiously.There are indications that higher compliance of wearing the CGM device improves glycosylated haemoglobin A1c level (HbA1c) to a larger extent.
         """,
-        "score": 45
+        'score': 45
     },
-
-
-        {
-        "title": "Real-time continuous glucose monitoring in type 1 diabetes: a systematic review and individual patient data meta-analysis",
-        "abstract": """
+    {
+        'title': 'real-time continuous glucose monitoring in type 1 diabetes: a systematic review and individual patient data meta-analysis',
+        'url': 'https://pubmed.ncbi.nlm.nih.gov/27978595/',
+        'abstract': """
 Background Real-time continuous glucose monitoring (RTCGM) may help in the management of individuals with type 1 diabetes mellitus (T1DM); however, the evidence supporting its use is unclear. The available meta-analyses on this topic use aggregate data which weaken inference.
 Objective Individual patient data were obtained from random- ized controlled trials (RCTs) to conduct a meta-analysis and synthesize evidence about the effect of RTCGM on glycosylated haemoglobin (HbA1c), hypoglycaemic events and time spent in hypoglycaemia in T1DM.
 Methods We searched MEDLINE, EMBASE, Cochrane Central Register of Controlled Trials and Database of Systematic Reviews, and Scopus through January 2015. We included RCTs that enrolled individuals with T1DM and compared RTCGM vs control group. A two-step regression model was used to pool individual patient data.
 Results We included 11 RCTs at moderate risk of bias. Meta- analysis suggests that the use of RTCGM is associated with a sta- tistically significant but modest reduction in HbA1c . The improvements in HbA1c were primarily seen in individuals over age 15 years. We were unable to identify a statistically significant difference in time spent in hypoglycaemia or the number of hypoglycaemic episodes although these analyses were imprecise and warrant lower confidence. There was no difference between males and females.
 Conclusion RTCGM in T1DM is associated with a reduction in HbA1c primarily in individuals over 15 years of age. We were unable to identify a statistically significant difference in the time spent in hypoglycaemia or the incidence of hypoglycaemic episodes.
         """,
-        "score": 40
-    },
-    
-
-
-
+        'score': 40
+    }
 ]
-
-
-
-# Sort papers by score in descending order
-abstracts_and_scores_sorted = sorted(abstracts_and_scores, key=lambda x: x["score"], reverse=True)
-
-# Summarize each abstract using Cohere API
-def summarize_abstracts():
-    summaries = []
-    for paper in abstracts_and_scores_sorted:
-        prompt = (
-            f"Summarize the following medical research abstract carefully. "
-            f"Preserve important terminology and concepts, and ensure accuracy for any details about the patient type, "
-            f"such as whether they are a child, adult, or elderly:\n\n"
-            f"{paper['abstract']}"
-        )
-        response = co.summarize(text=prompt, length="medium", model="cohere-summarize")
-        summary = response.summary if response else "Summary not available."
-        summaries.append({"title": paper["title"], "summary": summary, "score": paper["score"]})
-    return summaries
-
-
-
-
-
-
-    #-------------------------------------#
-def parse_pico_with_cohere(question):
-    prompt = f"Extract the PICO components (Patient, Intervention, Comparison, Outcome) from the following question, please write it in the correct order: \n\n'{question}'"
-    response = co.chat(
-        model='command-r',
-        message=prompt,
-        response_format={"type": "json_object"}
-    )
-    print("Raw response from Cohere:", response.text)
-    try:
-        parsed_response = json.loads(response.text)
-        print("Parsed JSON response:", parsed_response)
-        return parsed_response
-    except json.JSONDecodeError:
-        print("Error: Unable to parse PICO components. Invalid JSON format.")
-        return None
-
-def search_pubmed(pico_components):
-    if not pico_components:
-        print("No valid PICO components found.")
-        return []
-    
-    # Create a combined search term emphasizing systematic reviews
-    patient = pico_components.get('Patient', '')
-    intervention = pico_components.get('Intervention', '')
-    comparison = pico_components.get('Comparison', '')
-    outcome = pico_components.get('Outcome', '')
-    term = f"({patient} OR {intervention} OR {comparison} OR {outcome}) AND systematic review"
-    
-    base_url = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi"
-    params = {
-        "db": "pubmed",
-        "term": term,
-        "retmode": "json",
-        "retmax": 5
-    }
-    
-    response = requests.get(base_url, params=params)
-    if response.status_code == 200:
-        search_results = response.json()
-        return search_results['esearchresult']['idlist']
-    else:
-        print(f"Error: PubMed search failed with status code {response.status_code}")
-        return []
-
-def fetch_pubmed_details(paper_ids):
-    if not paper_ids:
-        print("No paper IDs provided.")
-        return None
-    
-    base_url = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
-    params = {
-        "db": "pubmed",
-        "id": ",".join(paper_ids),
-        "retmode": "xml",
-        "rettype": "abstract"
-    }
-    
-    response = requests.get(base_url, params=params)
-    if response.status_code == 200:
-        return response.text
-    else:
-        print(f"Error: Failed to fetch paper details with status code {response.status_code}")
-        return None
-
-def extract_abstracts_from_xml(xml_data):
-    root = ET.fromstring(xml_data)
-    articles = []
-    for article in root.findall(".//PubmedArticle"):
-        title = article.find(".//ArticleTitle").text if article.find(".//ArticleTitle") is not None else "No Title"
-        abstract = article.find(".//AbstractText")
-        url = f"https://pubmed.ncbi.nlm.nih.gov/{article.find('.//PMID').text}" if article.find(".//PMID") is not None else ""
-        
-        if abstract is not None:
-            articles.append({
-                'title': title,
-                'abstract': abstract.text,
-                'url': url
-            })
-    return articles
-
-def summarize_paper_with_cohere(paper_abstract):
-    prompt = f"Summarize the following research abstract in 2-3 sentences:\n\n'{paper_abstract}'"
-    response = co.chat(
-        model='command-r',
-        message=prompt,
-    )
-    return response.text

@@ -3,6 +3,34 @@
 {% block title %}NEMRAS - Home{% endblock %}
 
 {% block content %}
+    <!------------Navbar------------------->
+    <nav class="navbar sticky-top navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="{{ url_for('static', filename='images/NMERASs.png') }}" width="73" height="54" class="d-inline-block align-top" alt="">
+                NMeras
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#KnowMore">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services-section">services</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#contact-section">Contact Us</a>
+                  </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
     <!-----------------------page start "welcome"-->
     <div class="intro-container">
         <section id="sectionone">

@@ -1,13 +1,19 @@
 from flask import Blueprint, render_template, request, jsonify
-from app.pico_pubmed import parse_pico_with_cohere, search_pubmed, fetch_pubmed_details, extract_abstracts_from_xml, summarize_paper_with_cohere
+from app.pico_pubmed import (parse_pico_with_cohere, summarize_paper_with_cohere)
+from .data import articles  # Import the articles data structure
 import cohere
+import os
 
 main = Blueprint('main', __name__)
-co = cohere.Client('your-api-key')  # Replace with your actual Cohere API key
+
+# Define the path to the PDF folder
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+PDF_FOLDER = os.path.join(BASE_DIR, "pdf_dataset")
 
 @main.route('/')
 def index():
     return render_template('index.html')
+
 
 @main.route('/pico-question', methods=['GET', 'POST'])
 def pico_question():
@@ -18,18 +24,23 @@ def pico_question():
         parsed_pico = parse_pico_with_cohere(pico_question)
         
         results = []
-        if parsed_pico:
-            paper_ids = search_pubmed(parsed_pico)
-            if paper_ids:
-                paper_details_xml = fetch_pubmed_details(paper_ids)
-                if paper_details_xml:
-                    abstracts = extract_abstracts_from_xml(paper_details_xml)
-                    for abstract in abstracts:
-                        summary = summarize_paper_with_cohere(abstract)
-                        results.append({
-                            'abstract': abstract,
-                            'summary': summary
-                        })
+        
+        # Process all articles in the data structure
+        for article in articles:
+            # Summarize each article's abstract
+            summary = summarize_paper_with_cohere(article['abstract'])
+            
+            # Append details including score
+            results.append({
+                'title': article['title'],
+                'url': article['url'],
+                'abstract': article['abstract'],
+                'summary': summary,
+                'score': article['score']
+            })
+        
+        # Sort results by score in descending order
+        results = sorted(results, key=lambda x: x['score'], reverse=True)
         
         return jsonify({
             'pico': parsed_pico,
