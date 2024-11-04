@@ -3,9 +3,13 @@ import cohere
 import requests
 import json
 import xml.etree.ElementTree as ET
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 # Initialize Cohere client
-co = cohere.Client('IguNqlbuOavI0k4CWMEumaQXUm3OQjDMmLa2P4ju')
+co = cohere.Client(os.getenv('COHERE_API_KEY'))
 
 abstracts_and_scores = [
     {
