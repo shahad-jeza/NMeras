@@ -1,6 +1,6 @@
 # data.py
 
-articles = [
+articles_case_1= [
     {
         'title': 'Efficacy of Continuous Glucose Monitoring in Improving Glycemic Control and Reducing Hypoglycemia: A Systematic Review and Meta-Analysis of Randomized Trials',
         'url': 'https://pmc.ncbi.nlm.nih.gov/articles/PMC3192603/',
@@ -87,4 +87,226 @@ Conclusion RTCGM in T1DM is associated with a reduction in HbA1c primarily in in
         """,
         'score': 40
     }
+]
+
+
+
+
+
+
+
+
+
+articles_case_2 = [
+
+    {
+        'title': 'Nursing Interventions to Prevent Pressure Ulcers in Critically Ill Patients: A Review of the Evidence',
+        'url': 'https://pubmed.ncbi.nlm.nih.gov/33590917/',
+        'abstract': """
+Introduction: Pressure ulcers, also known as bedsores, pose a significant concern in critically ill
+patients due to prolonged immobility and complex medical conditions.
+Objective: This review examines the evidence supporting various nursing interventions to prevent
+pressure ulcers in critically ill patients.
+Methods: A comprehensive literature search was conducted to identify relevant studies published
+between 2010 and 2023. Key interventions included regular repositioning, specialized mattresses
+and cushions, skin care protocols, nutritional support, and patient and staff education.
+Results: The evidence supports a multifaceted approach, including regular repositioning,
+specialized support surfaces, comprehensive skin care, nutritional support, and education, in
+reducing the incidence of pressure ulcers in critically ill patients.
+Conclusion: Implementing evidence-based nursing interventions can significantly reduce the
+incidence of pressure ulcers in critically ill patients, emphasizing the importance of a coordinated
+approach to prevention.
+        """,
+        'score': 35
+    },
+
+        {
+        'title': 'Effectiveness of Pressure Ulcer Prevention Strtegies for Adult Patients in Intensive Care Units: A Systematic Review',
+        'url': 'https://pubmed.ncbi.nlm.nih.gov/27712030/',
+        'abstract': """
+Background: Pressure ulcers are associated with substantial health burden, but could be pre-
+ventable. Hospital-acquired pressure ulcers (HAPUs) prevention has become a priority for all
+
+healthcare settings, as it is considered a sign of quality of care providing. Intensive care unit
+(ICU) patients are at higher risk for HAPUs development. Despite the availability of published
+prevention strategies, there is a little evidence about which strategies can be safely integrated
+into routine standard care and have an impact on HAPUs prevention.
+Aims: The aim was to synthesize the best available evidence regarding the effectiveness of single
+strategies designed to reduce the incidence and prevalence of HAPUs development in ICUs.
+Methods: The search strategy was designed to retrieve studies published in English across
+CINAHL, Medline, Cochrane Central Register of Controlled Trials, Embase, Scopus, and Mednar
+between 2000 and 2015. All adult ICU participants were aged 18 years or over. This review
+included randomized controlled trials, quasi-experimental and comparative studies. The studies
+that were selected for retrieval were assessed by two independent reviewers for methodological
+validity prior to inclusion in the review using standardized critical-appraisal instruments.
+Results: The review included 25 studies, and the meta-analysis revealed a statistically significant
+effect of a silicon foam dressing strategy in reducing HAPUs incidence (effect size = 4.62; 95%
+CI: 0.05-0.29; p < .00001, effect size = 4.50; 95% CI: 0.05-0.31; p = .00001, respectively) in
+critically ill patients. Evidence of the effectiveness of nutrition, skin-care regimen, positioning
+and repositioning schedule, support surfaces, and the role of education in prevention of HAPUs
+development in the ICU was limited, which precludes strong conclusions.
+Linking Evidence to Action: The review provides an evidence-based guide to future priorities
+for clinical practice. In particular, a silicone foam dressing has positive impact in reducing sacrum
+and heel HAPUs incidence in the ICU.
+        """,
+        'score': 40
+    },
+
+
+        {
+        'title': 'Support surfaces for pressure ulcer prevention',
+        'url': 'https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD001735.pub5/full#:~:text=Different%20support%20surfaces%20(e.g.%20beds,the%20surface%20pressure%20more%20evenly.',
+        'abstract': """
+Background
+Pressure ulcers (also known as bedsores, pressure sores, decubitus ulcers) are areas of localised damage to the skin and underlying tissue
+
+due to pressure, shear or friction. They are common in the elderly and immobile and costly in financial and human terms. Pressure-
+relieving beds, mattresses and seat cushions are widely used as aids to prevention in both institutional and non-institutional settings.
+
+Objectives
+This systematic review seeks to answer the following questions:
+(1) to what extent do pressure-relieving cushions, beds, mattress overlays and mattress replacements reduce the incidence of pressure
+ulcers compared with standard support surfaces?
+(2) how effective are different pressure-relieving surfaces in preventing pressure ulcers, compared to one another?
+Search strategy
+For this second update the Cochrane Wounds Group Specialised Register was searched (28/2/08), The Cochrane Central Register of
+Controlled Trials (CENTRAL)(2008 Issue 1), Ovid MEDLINE (1950 to February Week 3 2008), Ovid EMBASE (1980 to 2008
+Week 08) and Ovid CINAHL (1982 to February Week 3 2008). The reference sections of included studies were searched for further
+trials.
+Selection criteria
+Randomised controlled trials (RCTs), published or unpublished, which assessed the effectiveness of beds, mattresses, mattress overlays,
+and seating cushions for the prevention of pressure ulcers, in any patient group, in any setting. Study selection was undertaken by at
+least two authors independently with a third author resolving uncertainty. RCTs were eligible for inclusion if they reported an objective,
+clinical outcome measure such as incidence and severity of new of pressure ulcers developed. Studies which only reported proxy outcome
+measures such as interface pressure were excluded.
+Data collection and analysis
+Trial data were extracted by one researcher and checked by a second. The results from each study are presented as relative risk for
+dichotomous variables. Where deemed appropriate, similar studies were pooled in a meta analysis.
+
+Main results
+For this second update 11 trials met the inclusion criteria bringing the total number of RCTs included in the review to 52.
+Foam alternatives to the standard hospital foam mattress can reduce the incidence of pressure ulcers in people at risk. The relative merits
+of alternating and constant low pressure devices are unclear. There is one high quality trial comparing the different alternating pressure
+devices for pressure ulcer prevention which suggests that alternating pressure mattresses may be more cost effective than alternating
+pressure overlays.
+Pressure-relieving overlays on the operating table have been shown to reduce postoperative pressure ulcer incidence, although two
+studies indicated that foam overlays resulted in adverse skin changes. Two trials indicated that Australian standard medical sheepskins
+prevented pressure ulcers. There is insufficient evidence to draw conclusions on the value of seat cushions, limb protectors and various
+constant low pressure devices as pressure ulcer prevention strategies.
+A study of Accident & Emergency trolley overlays did not identify a reduction in pressure ulcer incidence. There are tentative indications
+that foot waffle heel elevators, a particular low air loss hydrotherapy mattress and two types of operating theatre overlays are harmful.
+Authors’ conclusions
+In people at high risk of pressure ulcer development higher specification foam mattresses rather than standard hospital foam mattresses
+should be used. The relative merits of higher-tech constant low pressure and alternating pressure for prevention are unclear but
+alternating pressure mattresses may be more cost effective than alternating pressure overlays. Medical grade sheepskins are associated
+with a decrease in pressure ulcer development. Organisations might consider the use of some forms of pressure relief for high risk
+patients in the operating theatre. Seat cushions and overlays designed for use in Accident & Emergency settings have not been adequately
+evaluated.
+        """,
+        'score': 50
+    },
+
+        {
+        'title': 'Prevention of pressure ulcers with a static air support surface: A systematic review',
+        'url': 'https://www.google.com/search?client=safari&rls=en&q=Prevention+of+pressure+ulcers+with+a+static+air+support+surface%3A+A+systematic+review&ie=UTF-8&oe=UTF-8',
+        'abstract': """
+The aims of this study were to identify, assess, and summarise available evidence
+about the effectiveness of static air mattress overlays to prevent pressure ulcers.
+The primary outcome was the incidence of pressure ulcers. Secondary outcomes
+
+included costs and patient comfort. This study was a systematic review. Six elec-
+tronic databases were consulted: Cochrane Library, EMBASE, PubMed
+
+(Medline), CINAHL (EBSCOhost interface), Science direct, and Web of Science.
+
+In addition, a hand search through reviews, conference proceedings, and the refer-
+ence lists of the included studies was performed to identify additional studies.
+
+Potential studies were reviewed and assessed by 2 independent authors based on
+the title and abstract. Decisions regarding inclusion or exclusion of the studies
+
+were based on a consensus between the authors. Studies were included if the fol-
+lowing criteria were met: reporting an original study; the outcome was the inci-
+dence of pressure ulcer categories I to IV when using a static air mattress overlay
+
+and/or in comparison with other pressure-redistribution device(s); and studies pub-
+lished in English, French, and Dutch. No limitation was set on study setting,
+
+design, and date of publication. The methodological quality assessment was evalu-
+ated using the Critical Appraisal Skills Program Tool. Results were reported in a
+
+descriptive way to reflect the exploratory nature of the review. The searches
+included 13 studies: randomised controlled trials (n = 11) and cohort studies
+(n = 2). The mean pressure ulcer incidence figures found in the different settings
+were, respectively, 7.8% pressure ulcers of categories II to IV in nursing homes,
+9.06% pressure ulcers of categories I to IV in intensive care settings, and 12%
+pressure ulcers of categories I to IV in orthopaedic wards. Seven comparative
+studies reported a lower incidence in the groups of patients on a static air mattress
+overlay. Three studies reported a statistical (P < .1) lower incidence compared
+with a standard hospital mattress (10 cm thick, density 35 kg/m3
+
+), a foam mattress
+
+(15 cm thick), and a viscoelastic foam mattress (15 cm thick). No significant dif-
+ference in incidence, purchase costs, and patient comfort was found compared
+
+with dynamic air mattresses. This review focused on the effectiveness of static air
+
+mattress overlays to prevent pressure ulcers. There are indications that these mat-
+tress overlays are more effective in preventing pressure ulcers compared with the
+
+use of a standard mattress or a pressure-reducing foam mattress in nursing homes
+
+and intensive care settings. However, interpretation of the evidence should be per-
+formed with caution due to the wide variety of methodological and/or reporting
+
+quality levels of the included studies.
+        """,
+        'score': 35
+    },
+
+
+
+
+
+
+
+
+
+            {
+        'title': 'Preventing pressure ulcers—Are pressure-redistributing support surfaces effective? A Cochrane systematic review and meta-analysis§',
+        'url': 'https://pubmed.ncbi.nlm.nih.gov/35141761/',
+        'abstract': """
+Objectives: To undertake a systematic review of the effectiveness of pressure redistributing
+support surfaces in the prevention of pressure ulcers.
+Design: Systematic review and meta-analysis.
+Data sources: Cochrane Wound Group Specialised Register, The Cochrane Central Register
+of Controlled Trials, Ovid MEDLINE, Ovid EMBASE and EBSCO CINAHL. The reference
+sections of included trials were searched for further trials.
+Review methods: Randomised controlled trials and quasi-randomised trials, published or
+unpublished, which assessed the effects of support surfaces in preventing pressure ulcers
+(of any grade), in any patient group, in any setting compared to any other support surface,
+were sought. Two reviewers extracted and summarised details of eligible trials using a
+standardised form and assessed the methodological quality of each trial using the
+Cochrane risk of bias tool.
+Results: Fifty-three eligible trials were identified with a total of 16,285 study participants.
+Overall the risk of bias in the included trials was high. Pooled analysis showed that: (i)
+foam alternatives to the standard hospital foam mattress reduce the incidence of pressure
+ulcers in people at risk (RR 0.40, 95% CI 0.21–0.74) and Australian standard medical
+sheepskins prevent pressure ulcers compared to standard care (RR 0.48, 95% CI 0.31–0.74).
+Pressure-redistributing overlays on the operating table compared to standard care reduce
+postoperative pressure ulcer incidence (RR 0.53, 95% CI 0.33–0.85).
+Conclusions: While there is good evidence that higher specification foam mattresses,
+sheepskins, and that some overlays in the operative setting are effective in preventing
+pressure ulcers, there is insufficient evidence to draw conclusions on the value of seat
+cushions, limb protectors and various constant low pressure devices. The relative merits of
+higher-tech constant low pressure and alternating pressure for prevention are unclear.
+More robust trials are required to address these research gaps.
+        """,
+        'score': 40
+    },
+
+
+
+
 ]

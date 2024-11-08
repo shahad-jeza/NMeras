@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, jsonify
-from app.pico_pubmed import (parse_pico_with_cohere, summarize_paper_with_cohere)
-from .data import articles  # Import the articles data structure
+from app.pico_pubmed import (parse_pico_with_cohere, summarize_paper_with_cohere, classify_question)
+from .data import articles_case_1, articles_case_2  # Import the articles data structure
 import cohere
 import os
 
@@ -14,14 +14,24 @@ PDF_FOLDER = os.path.join(BASE_DIR, "pdf_dataset")
 def index():
     return render_template('index.html')
 
-
 @main.route('/pico-question', methods=['GET', 'POST'])
 def pico_question():
     if request.method == 'POST':
         pico_question = request.form['pico_question']
-        
-        # Parse the PICO components
+
+         # Parse the PICO components
         parsed_pico = parse_pico_with_cohere(pico_question)
+        
+        # Classify the question using the cohere function
+        question_type = classify_question(pico_question)
+        print(classify_question(pico_question))
+        
+        if question_type == 'case1':
+            articles = articles_case_1
+        elif question_type == 'case2':
+            articles = articles_case_2
+        else:
+            articles = []
         
         results = []
         
