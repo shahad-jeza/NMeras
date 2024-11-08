@@ -50,7 +50,8 @@ def pico_question():
             })
         
         # Sort results by score in descending order
-        results = sorted(results, key=lambda x: x['score'], reverse=True)
+        # Sort results by score in descending order, then reverse alphabetically by title
+        results = sorted(results, key=lambda x: (-x['score'], -ord(x['title'][0].lower())))
         
         return jsonify({
             'pico': parsed_pico,

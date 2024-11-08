@@ -1,6 +1,41 @@
 # data.py
 
 articles_case_1= [
+
+
+            {
+        'title': 'Preventing pressure ulcers—Are pressure-redistributing support surfaces effective? A Cochrane systematic review and meta-analysis§',
+        'url': 'https://pubmed.ncbi.nlm.nih.gov/35141761/',
+        'abstract': """
+Objectives: To undertake a systematic review of the effectiveness of pressure redistributing
+support surfaces in the prevention of pressure ulcers.
+Design: Systematic review and meta-analysis.
+Data sources: Cochrane Wound Group Specialised Register, The Cochrane Central Register
+of Controlled Trials, Ovid MEDLINE, Ovid EMBASE and EBSCO CINAHL. The reference
+sections of included trials were searched for further trials.
+Review methods: Randomised controlled trials and quasi-randomised trials, published or
+unpublished, which assessed the effects of support surfaces in preventing pressure ulcers
+(of any grade), in any patient group, in any setting compared to any other support surface,
+were sought. Two reviewers extracted and summarised details of eligible trials using a
+standardised form and assessed the methodological quality of each trial using the
+Cochrane risk of bias tool.
+Results: Fifty-three eligible trials were identified with a total of 16,285 study participants.
+Overall the risk of bias in the included trials was high. Pooled analysis showed that: (i)
+foam alternatives to the standard hospital foam mattress reduce the incidence of pressure
+ulcers in people at risk (RR 0.40, 95% CI 0.21–0.74) and Australian standard medical
+sheepskins prevent pressure ulcers compared to standard care (RR 0.48, 95% CI 0.31–0.74).
+Pressure-redistributing overlays on the operating table compared to standard care reduce
+postoperative pressure ulcer incidence (RR 0.53, 95% CI 0.33–0.85).
+Conclusions: While there is good evidence that higher specification foam mattresses,
+sheepskins, and that some overlays in the operative setting are effective in preventing
+pressure ulcers, there is insufficient evidence to draw conclusions on the value of seat
+cushions, limb protectors and various constant low pressure devices. The relative merits of
+higher-tech constant low pressure and alternating pressure for prevention are unclear.
+More robust trials are required to address these research gaps.
+        """,
+        'score': 40
+    },
+
     {
         'title': 'Efficacy of Continuous Glucose Monitoring in Improving Glycemic Control and Reducing Hypoglycemia: A Systematic Review and Meta-Analysis of Randomized Trials',
         'url': 'https://pmc.ncbi.nlm.nih.gov/articles/PMC3192603/',
