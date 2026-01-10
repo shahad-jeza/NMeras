@@ -65,17 +65,17 @@ def pico_question():
 def help_pico():
     data = request.json
     original_question = data['original_question']
-    
-    prompt = f"Rewrite the following question as a well-structured PICO question: '{original_question}'"
-    response = co.generate(
-        model='command',
-        prompt=prompt,
-        max_tokens=100,
-        temperature=0.7,
-        k=0,
-        stop_sequences=[],
-        return_likelihoods='NONE'
+
+    prompt = (
+        "Rewrite the following question as a clear, well-structured PICO question:\n\n"
+        f"{original_question}"
     )
-    suggested_question = response.generations[0].text.strip()
-    
-    return jsonify({'suggested_question': suggested_question})
+
+    response = co.chat(
+        model=COHERE_CHAT_MODEL,
+        message=prompt
+    )
+
+    return jsonify({
+        "suggested_question": response.text.strip()
+    })
