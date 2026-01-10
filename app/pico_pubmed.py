@@ -6,7 +6,7 @@ import json
 co = cohere.Client(os.getenv("COHERE_API_KEY"))
 
 # Debug print to confirm deployed version
-print("===== PICO_PUBMED.PY: Using co.chat() API (Updated 2026) =====")
+print("===== PICO_PUBMED.PY: Fully updated for Cohere Chat API =====")
 
 
 # =========================
@@ -19,14 +19,13 @@ def parse_pico_with_cohere(question: str):
         f"Question: {question}"
     )
 
-    # CHANGED: co.generate() -> co.chat()
     response = co.chat(
         model="command-a-03-2025",
-        message=prompt,  # CHANGED: prompt -> message
+        message=prompt,
         temperature=0
     )
 
-    text = response.text.strip()  # CHANGED: response.generations[0].text -> response.text
+    text = response.text.strip()
 
     try:
         return json.loads(text)
@@ -49,41 +48,85 @@ def summarize_paper_with_cohere(abstract: str):
         f"{abstract}"
     )
 
-    # CHANGED: co.generate() -> co.chat()
     response = co.chat(
         model="command-a-03-2025",
-        message=prompt,  # CHANGED: prompt -> message
+        message=prompt,
         temperature=0.3
     )
 
-    return response.text.strip()  # CHANGED: response.generations[0].text -> response.text
+    return response.text.strip()
 
 
 # =========================
-# QUESTION CLASSIFICATION
+# QUESTION CLASSIFICATION (UPDATED FOR CHAT API)
 # =========================
 def classify_question(question: str):
     """
-    IMPORTANT:
-    - command-a-03-2025 does NOT support classify()
-    - 'large' is still valid and REQUIRED here
+    UPDATED: Migrated from co.classify() to co.chat() for classification
+    Classify questions as 'case1' or 'case2' using the Chat API
     """
-
-    examples = [
-        {
-            "text": "Does drug A reduce blood pressure compared to drug B?",
-            "label": "case1"
-        },
-        {
-            "text": "What is the effectiveness of intervention X in elderly patients?",
-            "label": "case2"
-        }
-    ]
-
-    response = co.classify(
-        model="large",
-        inputs=[question],
-        examples=examples
+    
+    # Define examples for the model
+    system_prompt = """You are a medical question classifier. Classify the following clinical question as either 'case1' or 'case2'.
+    
+    Examples:
+    1. "Does drug A reduce blood pressure compared to drug B?" → case1
+    2. "What is the effectiveness of intervention X in elderly patients?" → case2
+    3. "In patients with diabetes, does medication Y improve outcomes compared to placebo?" → case1
+    4. "How effective is therapy Z for treating depression in adolescents?" → case2
+    
+    Return ONLY the classification label: either 'case1' or 'case2'."""
+    
+    prompt = f"Classify this question: {question}"
+    
+    response = co.chat(
+        model="command-a-03-2025",
+        message=prompt,
+        temperature=0,
+        preamble=system_prompt
     )
+    
+    # Extract classification from response
+    result = response.text.strip().lower()
+    
+    # Clean up the response to ensure we get only case1 or case2
+    if 'case1' in result:
+        return 'case1'
+    elif 'case2' in result:
+        return 'case2'
+    else:
+        # Default fallback
+        return 'case1'
 
-    return response.classifications[0].prediction
+
+# Alternative simpler version if above doesn't work:
+def classify_question_simple(question: str):
+    """
+    Simpler version of classification using direct prompt
+    """
+    prompt = f"""Classify this medical question as 'case1' or 'case2':
+    
+    Question: {question}
+    
+    Return ONLY one word: either 'case1' or 'case2'.
+    
+    case1 questions typically compare interventions (e.g., "Does A work better than B?").
+    case2 questions typically ask about effectiveness of a single intervention."""
+    
+    response = co.chat(
+        model="command-a-03-2025",
+        message=prompt,
+        temperature=0,
+        max_tokens=10  # Limit response to just the classification
+    )
+    
+    result = response.text.strip().lower()
+    
+    # Clean and validate response
+    if 'case1' in result:
+        return 'case1'
+    elif 'case2' in result:
+        return 'case2'
+    else:
+        # If unclear, default to case1
+        return 'case1'

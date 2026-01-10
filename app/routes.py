@@ -10,7 +10,7 @@ main = Blueprint('main', __name__)
 co = cohere.Client(os.getenv("COHERE_API_KEY"))
 
 # Debug print to confirm deployed version
-print("===== ROUTES.PY: Updated for Cohere Chat API =====")
+print("===== ROUTES.PY: Updated for Cohere Chat API (no classify) =====")
 
 # Define the path to the PDF folder
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -23,13 +23,13 @@ def index():
 @main.route('/pico-question', methods=['GET', 'POST'])
 def pico_question():
     if request.method == 'POST':
-        pico_question = request.form['pico_question']
+        pico_question_text = request.form['pico_question']
 
         # Parse the PICO components
-        parsed_pico = parse_pico_with_cohere(pico_question)
+        parsed_pico = parse_pico_with_cohere(pico_question_text)
         
-        # Classify the question using the cohere function
-        question_type = classify_question(pico_question)
+        # Classify the question using the updated function
+        question_type = classify_question(pico_question_text)
         print(f"Question type: {question_type}")
         
         if question_type == 'case1':
@@ -56,13 +56,12 @@ def pico_question():
             })
         
         # Sort results by score in descending order
-        # Sort results by score in descending order, then reverse alphabetically by title
         results = sorted(results, key=lambda x: (-x['score'], -ord(x['title'][0].lower())))
         
         return jsonify({
             'pico': parsed_pico,
             'results': results,
-            'pico_question': pico_question
+            'pico_question': pico_question_text
         })
     
     return render_template('pico_question.html')
@@ -77,10 +76,9 @@ def help_pico():
         f"{original_question}"
     )
 
-    # CHANGED: co.generate() -> co.chat()
     response = co.chat(
         model='command-a-03-2025',
-        message=prompt,  # CHANGED: prompt -> message
+        message=prompt,
         temperature=0.7
     )
 
@@ -100,10 +98,16 @@ def test_cohere():
             message='Hello, are you working?',
             temperature=0
         )
+        
+        # Also test classification
+        test_class = classify_question("Does drug A work better than drug B?")
+        
         return jsonify({
             'status': 'success',
             'cohere_response': response.text,
-            'api_used': 'chat'
+            'classification_test': test_class,
+            'api_used': 'chat',
+            'cohere_version': cohere.__version__ if hasattr(cohere, '__version__') else 'unknown'
         })
     except Exception as e:
         return jsonify({
