@@ -16,14 +16,13 @@ def parse_pico_with_cohere(question: str):
         f"Question: {question}"
     )
 
-    response = co.generate(
+    response = co.chat(
         model="command-a-03-2025",
-        prompt=prompt,
-        max_tokens=300,
+        message=prompt,
         temperature=0
     )
 
-    text = response.generations[0].text.strip()
+    text = response.text.strip()
 
     try:
         return json.loads(text)
@@ -46,14 +45,13 @@ def summarize_paper_with_cohere(abstract: str):
         f"{abstract}"
     )
 
-    response = co.generate(
+    response = co.chat(
         model="command-a-03-2025",
-        prompt=prompt,
-        max_tokens=200,
+        message=prompt,
         temperature=0.3
     )
 
-    return response.generations[0].text.strip()
+    return response.text.strip()
 
 
 # =========================
@@ -61,11 +59,9 @@ def summarize_paper_with_cohere(abstract: str):
 # =========================
 def classify_question(question: str):
     """
-    IMPORTANT:
-    - command-a-03-2025 does NOT support classify()
-    - 'large' is still valid and REQUIRED here
+    Note: The classify endpoint is still working for now,
+    but consider migrating to chat for classification too.
     """
-
     examples = [
         {
             "text": "Does drug A reduce blood pressure compared to drug B?",

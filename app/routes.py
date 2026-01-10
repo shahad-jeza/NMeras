@@ -6,6 +6,9 @@ import os
 
 main = Blueprint('main', __name__)
 
+# Initialize Cohere client for routes
+co = cohere.Client(os.getenv("COHERE_API_KEY"))
+
 # Define the path to the PDF folder
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 PDF_FOLDER = os.path.join(BASE_DIR, "pdf_dataset")
@@ -71,14 +74,10 @@ def help_pico():
         f"{original_question}"
     )
 
-    response = co.generate(
+    response = co.chat(
         model='command-a-03-2025',
-        prompt=prompt,
-        max_tokens=100,
-        temperature=0.7,
-        k=0,
-        stop_sequences=[],
-        return_likelihoods='NONE'
+        message=prompt,
+        temperature=0.7
     )
 
     return jsonify({
