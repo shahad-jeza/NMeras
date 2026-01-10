@@ -5,6 +5,9 @@ import json
 # Initialize Cohere client
 co = cohere.Client(os.getenv("COHERE_API_KEY"))
 
+# Debug print to confirm deployed version
+print("===== PICO_PUBMED.PY: Using co.chat() API (Updated 2026) =====")
+
 
 # =========================
 # PICO PARSING
@@ -16,13 +19,14 @@ def parse_pico_with_cohere(question: str):
         f"Question: {question}"
     )
 
+    # CHANGED: co.generate() -> co.chat()
     response = co.chat(
         model="command-a-03-2025",
-        message=prompt,
+        message=prompt,  # CHANGED: prompt -> message
         temperature=0
     )
 
-    text = response.text.strip()
+    text = response.text.strip()  # CHANGED: response.generations[0].text -> response.text
 
     try:
         return json.loads(text)
@@ -45,13 +49,14 @@ def summarize_paper_with_cohere(abstract: str):
         f"{abstract}"
     )
 
+    # CHANGED: co.generate() -> co.chat()
     response = co.chat(
         model="command-a-03-2025",
-        message=prompt,
+        message=prompt,  # CHANGED: prompt -> message
         temperature=0.3
     )
 
-    return response.text.strip()
+    return response.text.strip()  # CHANGED: response.generations[0].text -> response.text
 
 
 # =========================
@@ -59,9 +64,11 @@ def summarize_paper_with_cohere(abstract: str):
 # =========================
 def classify_question(question: str):
     """
-    Note: The classify endpoint is still working for now,
-    but consider migrating to chat for classification too.
+    IMPORTANT:
+    - command-a-03-2025 does NOT support classify()
+    - 'large' is still valid and REQUIRED here
     """
+
     examples = [
         {
             "text": "Does drug A reduce blood pressure compared to drug B?",
