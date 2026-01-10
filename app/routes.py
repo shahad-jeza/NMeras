@@ -71,9 +71,14 @@ def help_pico():
         f"{original_question}"
     )
 
-    response = co.chat(
-        model=COHERE_CHAT_MODEL,
-        message=prompt
+    response = co.generate(
+        model='command-a-03-2025',
+        prompt=prompt,
+        max_tokens=100,
+        temperature=0.7,
+        k=0,
+        stop_sequences=[],
+        return_likelihoods='NONE'
     )
 
     return jsonify({
