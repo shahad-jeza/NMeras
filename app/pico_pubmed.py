@@ -86,7 +86,7 @@ def summarize_abstracts():
 def parse_pico_with_cohere(question):
     prompt = f"Extract the PICO components (Patient, Intervention, Comparison, Outcome) from the following question, please write it in the correct order: \n\n'{question}'"
     response = co.chat(
-        model='command-r-plus',
+        model='CohereLabs/c4ai-command-r-plus',
         message=prompt,
         response_format={"type": "json_object"}
     )
@@ -166,7 +166,7 @@ def extract_abstracts_from_xml(xml_data):
 def summarize_paper_with_cohere(paper_abstract):
     prompt = f"Summarize the following research abstract in 2-3 sentences:\n\n'{paper_abstract}'"
     response = co.chat(
-        model='command-r-plus',
+        model='CohereLabs/c4ai-command-r-plus',
         message=prompt,
     )
     return response.text
